@@ -1,11 +1,11 @@
 package com.example.esapidemo.es;
 
 import org.apache.http.HttpHost;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.GetIndexRequest;
-import org.elasticsearch.client.indices.GetIndexResponse;
 
 import java.io.IOException;
 
@@ -13,18 +13,16 @@ import java.io.IOException;
  * @author ：zhangsw
  * @date ：2022/8/29
  */
-public class SearchIndex {
+public class DeleteIndex {
 
     public static void main(String[] args) throws IOException {
         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
 
-        GetIndexRequest request = new GetIndexRequest("user2");
+        DeleteIndexRequest request = new DeleteIndexRequest("user2");
 
-        final GetIndexResponse response = client.indices().get(request, RequestOptions.DEFAULT);
+        final AcknowledgedResponse acknowledgedResponse = client.indices().delete(request, RequestOptions.DEFAULT);
 
-        System.out.println("alias " + response.getAliases());
-        System.out.println("mappings "+ response.getMappings());
-        System.out.println("settings " + response.getSettings());
+        System.out.println("操作结果： = " + acknowledgedResponse);
 
         client.close();
     }
