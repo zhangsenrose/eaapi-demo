@@ -19,9 +19,9 @@ public class InsertDoc {
         request.index("user2");
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", "zhaoyue");
-        jsonObject.put("age", 25);
-        jsonObject.put("sex", "woman");
+        jsonObject.put("name", "zhangsw");
+        jsonObject.put("age", 27);
+        jsonObject.put("sex", "man");
 
         request.source(jsonObject.toJSONString(), XContentType.JSON);
 

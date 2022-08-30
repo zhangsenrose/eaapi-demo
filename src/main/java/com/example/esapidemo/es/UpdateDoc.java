@@ -15,7 +15,7 @@ public class UpdateDoc {
         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
 
         UpdateRequest request = new UpdateRequest();
-        request.index("user2").id("1001");
+        request.index("user2").id("100001");
 
         request.doc(XContentType.JSON, "sex", "男性");
 
